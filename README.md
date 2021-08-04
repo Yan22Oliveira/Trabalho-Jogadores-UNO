@@ -1,5 +1,9 @@
 # Partidas UNO
 
+![Screenshot](./prints/tela_login.png)
+
+## Sistema de login com autenticação 03/08/2021
+
 Atividade em Grupo
 
 ## Grupos:
