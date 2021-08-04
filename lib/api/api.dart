@@ -7,3 +7,5 @@ export './jogos/lista_jogos.dart';
 export './jogos/editar_jogo.dart';
 export './jogos/cadastrar_jogos.dart';
 export './jogos/deletar_jogos.dart';
+
+export './login/login.dart';
