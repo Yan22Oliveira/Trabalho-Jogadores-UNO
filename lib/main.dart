@@ -4,9 +4,7 @@ import 'package:provider/provider.dart';
 
 import './api/api.dart';
 import './helpers/helpers.dart';
-
-import 'screens/home/home_screen.dart';
-import './screens/login/login_screen.dart';
+import './widgets/widgets.dart';
 
 void main() {
   runApp(MyApp());
@@ -64,7 +62,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: colorRedSalsa,
         ),
-        home: LoginScreen(),
+        home: ValidarTela(),
       ),
     );
   }

@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dio/dio.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -28,6 +30,24 @@ class Login extends ChangeNotifier{
   }
 
   GlobalKey<ScaffoldState> scaffoldKeyLogin = GlobalKey<ScaffoldState>(debugLabel: '_scaffoldKeyLogin');
+
+  //Pegar Imagem
+  final imagemTemporaria = PickedFile;
+  final _picker = ImagePicker();
+
+  File _imagem = File("");
+  File get imagem => _imagem;
+  set imagem(File value){
+    _imagem = value;
+    notifyListeners();
+  }
+
+  Future<void> pegarImagemGaleria(BuildContext context) async {
+    PickedFile? imagemTemporaria = await _picker.getImage(source: ImageSource.gallery,imageQuality: 90,maxWidth: 600,maxHeight: 600);
+    if(imagemTemporaria!=null){
+      imagem = File(imagemTemporaria.path);
+    }
+  }
 
   bool _loading = false;
   bool get loading => _loading;
