@@ -2,6 +2,10 @@
 
 ![Screenshot](./prints/tela_login.png)
 
+![Screenshot](./prints/galeria.png)
+
+![Screenshot](./prints/validar.png)
+
 ## Sistema de login com autenticação 03/08/2021
 
 Atividade em Grupo

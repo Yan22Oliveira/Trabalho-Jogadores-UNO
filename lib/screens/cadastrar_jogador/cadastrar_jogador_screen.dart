@@ -128,7 +128,7 @@ class _CadastrarJogadorScreenState extends State<CadastrarJogadorScreen> {
             child: Form(
               key: formKey,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   if(cadastrarJogador.loading)
                     LinearProgressIndicator(
@@ -139,9 +139,82 @@ class _CadastrarJogadorScreenState extends State<CadastrarJogadorScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const SizedBox(height: 36,),
+
+                        const SizedBox(height: 40,),
+
+                        FormField(
+                          validator: (oferta){
+                            if(cadastrarJogador.imagem.path.isEmpty)
+                              return 'É necessário adicionar uma imagem';
+                            return null;
+                          },
+                          builder: (state){
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const SizedBox(height: 4,),
+                                ClipOval(
+                                  child: Container(
+                                    color: colorRedSalsa,
+                                    padding: EdgeInsets.all(1.6),
+                                    child: ClipOval(
+                                      child: Container(
+                                        height: 140,
+                                        width: 140,
+                                        color: Colors.white,
+                                        alignment: Alignment.center,
+                                        child: Stack(
+                                          children: [
+                                            if(cadastrarJogador.imagem.path.isNotEmpty)
+                                              Center(
+                                                child: Image.file(
+                                                  cadastrarJogador.imagem,
+                                                  height: 140,
+                                                ),
+                                              ),
+                                            Align(
+                                              alignment: cadastrarJogador.imagem.path.isNotEmpty?
+                                              Alignment.topRight:
+                                              Alignment.center,
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: IconButton(
+                                                  onPressed: ()async{
+                                                    await cadastrarJogador.pegarImagemGaleria(context);
+                                                  },
+                                                  tooltip: "Adicionar imagem",
+                                                  icon: Icon(
+                                                    Icons.camera_alt_rounded,
+                                                    color: colorRedSalsa,
+                                                    size: 35,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                if(state.hasError)
+                                  const SizedBox(height: 4,),
+                                if(state.hasError)
+                                  Text(
+                                    state.errorText as String,
+                                    style: const TextStyle(
+                                        color: Colors.red,
+                                        fontSize: 12
+                                    ),
+                                  ),
+                              ],
+                            );
+                          },
+
+                        ),
+                        const SizedBox(height: 40,),
                         TextFormField(
                           controller: _nomeController,
                           keyboardType: TextInputType.text,
